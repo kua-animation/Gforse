@@ -19,7 +19,28 @@ module gforse
             type(c_ptr), value :: window
             type(c_ptr) :: GF_render
         end function GF_render
+
+        function GF_is_key_down(key) bind(C)
+            use iso_c_binding
+            integer(c_int), value :: key
+            integer(c_int) :: GF_is_key_down
+        end function GF_is_key_down
+
+        function GF_event() bind(C)
+            use iso_c_binding
+            integer(c_int) :: GF_event
         
+            
+        end function GF_event
+        
+        subroutine GF_set_window_position(window, x, y) bind(C)
+            use iso_c_binding
+            type(c_ptr), value :: window
+            integer(c_int), value :: x
+            integer(c_int), value :: y
+            
+        end subroutine GF_set_window_position
+
         subroutine GF_Init() bind(C)
             use iso_c_binding
         end subroutine GF_Init

@@ -1,5 +1,7 @@
 #include <SDL2/SDL.h>
 
+SDL_Event event;
+
 void gf_init() {
     SDL_Init(SDL_INIT_VIDEO);
 }
@@ -21,9 +23,32 @@ void* gf_render(void* window) {
     return (void*)render;
 }
 
+int gf_is_key_down(int key) {
+    if (event.type = SDL_KEYDOWN) {
+        if (event.key.keysym.sym == key) {
+                return 1;
+        }
+    }
+    return 0;
+}
+
+int gf_event() {
+    if (SDL_PollEvent(&event) != 0) {
+        return 1;
+    }
+
+    return 0;
+
+}
+
+void gf_set_window_position(void* window, int newX, int newY) {
+
+    SDL_SetWindowPosition((SDL_Window*)window, newX, newY);
+
+}
+
 void gf_set_window_color(void* render, int r, int g, int b) {
-    SDL_Event event;
-    SDL_PollEvent(&event);
+   
     SDL_SetRenderDrawColor((SDL_Renderer*)render, r, g, b, 255);
     SDL_RenderClear((SDL_Renderer*)render);
     SDL_RenderPresent((SDL_Renderer*)render);
